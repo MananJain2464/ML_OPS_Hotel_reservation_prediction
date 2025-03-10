@@ -27,9 +27,9 @@ pipeline {
                     echo 'Setting up Virtual Environment and Installing dependencies...'
                     sh '''
                     set -e  # Stop on errors
-                    sudo apt-get update
-                    sudo apt-get install -y git  # Install Git (needed for MLflow)
-
+                    apt-get update
+                    apt-get install -y git  # Install Git (needed for MLflow)
+                    
                     python -m venv ${VENV_DIR}
                     source ${VENV_DIR}/bin/activate
                     pip install --upgrade pip 
