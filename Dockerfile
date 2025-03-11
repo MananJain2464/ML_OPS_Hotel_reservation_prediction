@@ -3,7 +3,8 @@ FROM python:slim
 
 # Set environment variables to prevent .pyc files & enable unbuffered output
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/app
 
 # Set the working directory
 WORKDIR /app
