@@ -26,13 +26,9 @@ pipeline {
                 script {
                     echo 'Setting up Virtual Environment and Installing dependencies...'
                     sh '''
-                    set -e  # Stop on errors
-                    apt-get update
-                    apt-get install -y git  # Install Git (needed for MLflow)
-                    
                     python -m venv ${VENV_DIR}
-                    source ${VENV_DIR}/bin/activate
-                    pip install --upgrade pip 
+                    . ${VENV_DIR}/bin/activate
+                    pip install --upgrade pip
                     pip install -e .
                     '''
                 }
@@ -45,7 +41,6 @@ pipeline {
                     script {
                         echo 'Building and Pushing Docker Image to GCR...'
                         sh '''
-                        set -e  # Stop on errors
                         export PATH=$PATH:${GCLOUD_PATH}
 
                         gcloud auth activate-service-account --key-file=${GOOGLE_APPLICATION_CREDENTIALS}
